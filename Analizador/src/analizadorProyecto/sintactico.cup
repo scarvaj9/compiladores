@@ -38,8 +38,6 @@ E ::= T;
 T ::= num | id;
 T ::= pi EL pd;
 
-PRO, IN, INTS, EA1, E1, T1
-
 CONDICIONAL::= ENPAREJA| SINPAREJA; // la pareja son los que tiene if then else y los sin pareja solo if then 
 SINPAREJA::= pi PRO pd enton INST finsi SENTENCIA;
 ENPAREJA::= pi PRO pd enton INST sino INST finsi SENTENCIA;
