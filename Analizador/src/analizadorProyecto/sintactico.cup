@@ -9,7 +9,7 @@ parser code {:
     }
 :};
 
-terminal variables,enton,coma,cad,div,op,num,id,pd,pi,inicio,fin,mientras,finMientras,hacer,leer,eq,ol,or,tipoEntero,p_coma,tipoReal,si,escri,para;
+terminal variables,enton,coma,cad,div,op,num,id,pd,pi,inicio,sino,fin,finsi,mientras,finmien,hacer,leer,eq,ol,or,tipoEntero,p_coma,tipoReal,si,escri,para,real;
 non terminal INICIO,PRO,IN,INTS,EA1,E1,T1,SENTENCIA,CICLOMIENTRAS,CICLOPARA,CONDICIONAL,ESCRITURA,DL,ASIGNACION,OPERACIONES,AUXILIAR,TERMINO,IS,I,EL,EA,E,T,Q;
 
 start with INICIO;
