@@ -10,19 +10,25 @@ parser code {:
 :};
 
 terminal variables,coma,cad,div,op,num,id,pd,pi,inicio,fin,mientras,finMientras,hacer,leer,eq,ol,or,tipoEntero,p_coma,tipoReal,si,escri;
-non terminal INICIO,SENTENCIA,CICLOMIENTRAS,CICLOPARA,CONDICIONAL,ESCRITURA,DL,ASIGNACION,OPERACIONES;
+non terminal INICIO,SENTENCIA,CICLOMIENTRAS,CICLOPARA,CONDICIONAL,ESCRITURA,DL,ASIGNACION,OPERACIONES,AUXILIAR,TERMINO,IS,I,EL,EA,E,T,Q;
 
 start with INICIO;
 
 INICIO::= inicio id SENTENCIA fin|inicio SENTENCIA fin;
 SENTENCIA::= mientras CICLOMIENTRAS|si CONDICIONAL|para CICLOPARA|tipoEntero DL|tipoReal  DL|leer DL|escri ESCRITURA|id eq ASIGNACION;
 DL::= id p_coma SENTENCIA|variables p_coma SENTENCIA; //Lectura y declaracion de variables
-ASIGNACION::= num p_coma SENTENCIA|real p_coma SENTENCIA;
+ASIGNACION::= num p_coma SENTENCIA|real p_coma SENTENCIA|OPERACIONES;
 ESCRITURA::= id p_coma SENTENCIA|variables p_coma SENTENCIA|cad p_coma SENTENCIA|cad coma id ESCRITURA|id coma cad ESCRITURA|SENTENCIA;
-CICLOMIENTRAS::=pi EL pd hacer IS finmientras;
+OPERACIONES::= Q p_coma SENTENCIA;
+Q ::= AUXILIAR;
+AUXILIAR ::= AUXILIAR op TERMINO;
+AUXILIAR ::= TERMINO;
+TERMINO ::= num | id |real;
+TERMINO ::= pi Q pd;
+CICLOMIENTRAS::=pi EL pd hacer IS finmientras SENTENCIA;
 IS::=I;
 IS::=I IS;
-I::=id eq EL pc;
+I::=id eq EL p_coma;
 EL ::= EL ol EA;
 EL ::= EA;
 EA ::= E or E;
@@ -31,3 +37,4 @@ E ::= E op T;
 E ::= T;
 T ::= num | id;
 T ::= pi EL pd;
+CONDICIONAL::= 
