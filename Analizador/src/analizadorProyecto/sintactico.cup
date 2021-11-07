@@ -9,26 +9,25 @@ parser code {:
     }
 :};
 
-terminal variables,enton,coma,cad,div,op,num,id,pd,pi,inicio,sino,fin,finsi,mientras,finmien,hacer,leer,eq,ol,or,tipoEntero,p_coma,tipoReal,si,escri,para,real;
-non terminal INICIO,PRO,IN,INST,EA1,E1,T1,SENTENCIA,CICLOMIENTRAS,CICLOPARA,CONDICIONAL,ESCRITURA,DL,ASIGNACION,OPERACIONES,AUXILIAR,TERMINO,IS,I,EL,EA,E,T,Q,ENPAREJA,SINPAREJA;
+terminal variables,finpara,enton,coma,cad,op,num,id,pd,pi,inicio,sino,fin,finsi,mientras,finmien,hacer,leer,eq,ol,or,tipoEntero,p_coma,tipoReal,si,escri,para,real,hasta,paso;
+non terminal T2,IN1,PROCE,INICIO,PRO,IN,INST,EA1,E1,T1,SENTENCIA,CICLOMIENTRAS,CICLOPARA,CONDICIONAL,ESCRITURA,DL,OPERACIONES,AUXILIAR,TERMINO,Q,IS,I,EL,EA,E,T,ENPAREJA,SINPAREJA;
 
 start with INICIO;
 
 INICIO::= inicio id SENTENCIA fin|inicio SENTENCIA fin;
-SENTENCIA::= mientras CICLOMIENTRAS|si CONDICIONAL|para CICLOPARA|tipoEntero DL|tipoReal  DL|leer DL|escri ESCRITURA|id eq ASIGNACION;
+SENTENCIA::= mientras CICLOMIENTRAS|si CONDICIONAL|para CICLOPARA|tipoEntero DL|tipoReal  DL|leer DL|escri ESCRITURA|id eq OPERACIONES;
 DL::= id p_coma SENTENCIA|variables p_coma SENTENCIA; //Lectura y declaracion de variables
-ASIGNACION::= num p_coma SENTENCIA|real p_coma SENTENCIA|OPERACIONES;
 ESCRITURA::= id p_coma SENTENCIA|variables p_coma SENTENCIA|cad p_coma SENTENCIA|cad coma id ESCRITURA|id coma cad ESCRITURA|SENTENCIA;
 OPERACIONES::= Q p_coma SENTENCIA;
-Q ::= AUXILIAR;
+Q ::= AUXILIAR;  
 AUXILIAR ::= AUXILIAR op TERMINO;
 AUXILIAR ::= TERMINO;
-TERMINO ::= num | id |real;
+TERMINO ::=  num | real | id;
 TERMINO ::= pi Q pd;
 CICLOMIENTRAS::=pi EL pd hacer IS finmien SENTENCIA;
 IS::=I;
 IS::=I IS;
-I::=id eq EL p_coma;
+I::= SENTENCIA;
 EL ::= EL ol EA;
 EL ::= EA;
 EA ::= E or E;
@@ -52,3 +51,9 @@ E1 ::= E1 op T1;
 E1 ::= T1;
 T1 ::= num | id;
 T1 ::= pi PRO pd;
+
+CICLOPARA ::= id eq num hasta T2 paso num PROCE finpara SENTENCIA;
+PROCE::=IN1;
+PROCE::=IN1 PROCE;
+IN1::= SENTENCIA;
+T2 ::= num | id;

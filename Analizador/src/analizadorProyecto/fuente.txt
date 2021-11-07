@@ -47,6 +47,6 @@ Para i=0 Hasta a paso 2
        FinPara
 FinPara
 
-Escribir “a =”
+Escribir 'a ='
 
 FinPrograma

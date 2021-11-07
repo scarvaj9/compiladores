@@ -3,6 +3,7 @@ package analizadorProyecto;
 import java.util.ArrayList;
 import java_cup.runtime.*;
 %%
+%unicode
 %class Lexer
 %line
 %column
@@ -25,7 +26,6 @@ public Symbol symbol(int type){
 a = [a-zA-Z]
 n = [0-9]
 s = "_"
-g = [“”]
 c = [-=%#]
 x = [\n\t\r]
 
@@ -62,9 +62,10 @@ finsi = "FinSi"|"finsi"|"FINSI"
 mientras ="Mientras"|"mientras"|"MIENTRAS"
 finmien = "FinMientras"|"finmientras"|"FINMIENTRAS"|"Finmientras"
 
-para = "Para"
-hasta = "hasta"
-finpara = "Finpara"
+para = "Para"|"para"|"PARA"
+hasta = "hasta"|"Hasta"|"HASTA"
+paso = "PASO"|"Paso"|"paso"
+finpara = "Finpara"|"finPara"|"FinPara"|"FINPARA"|"finpara"
 
 
 %%
@@ -83,8 +84,10 @@ finpara = "Finpara"
 {mientras} {ts.add(new Token("Palabra reservada ", yytext()));return symbol(sym.mientras);}
 {finmien} {ts.add(new Token("Palabra reservada ", yytext()));return symbol(sym.finmien);}
 "hacer" {ts.add(new Token("Palabra reservada ", yytext()));return symbol(sym.hacer);}
+
 {para} {ts.add(new Token("Condicion Para",yytext()));return symbol(sym.para);}
 {hasta} {ts.add(new Token("Condicion final ",yytext()));return symbol(sym.hasta);}
+{paso} {ts.add(new Token("Condicion final ",yytext()));return symbol(sym.paso);}
 {finpara} {ts.add(new Token("Fin condicion para ",yytext()));return symbol(sym.finpara);}
 
 // token tipos variables 

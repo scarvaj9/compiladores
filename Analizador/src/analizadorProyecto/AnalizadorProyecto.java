@@ -22,6 +22,28 @@ public class AnalizadorProyecto {
             String ruta = "src\\analizadorProyecto\\fuente.txt";
             String archivo = new File(ruta).getAbsolutePath();
             Lexer lex = new Lexer(new FileReader(archivo));
+            parser p = new parser(lex);
+            p.parse(); // compilar
+            
+            if (lex.errlex.length()==0 && p.errsin.length()==0){
+                System.out.println("Compilación correcta");
+                System.out.println(lex.ts.toString());
+            }
+            else{
+                System.err.println("Compilacion incorrecta");
+                System.err.println(lex.errlex);
+                System.err.println(p.errsin);
+            }
+        
+        
+        
+        
+        
+        /**
+        try {
+            String ruta = "src\\analizadorProyecto\\fuente.txt";
+            String archivo = new File(ruta).getAbsolutePath();
+            Lexer lex = new Lexer(new FileReader(archivo));
             lex.yylex(); // compilar
             
             if (lex.errlex.isEmpty()){
@@ -32,7 +54,7 @@ public class AnalizadorProyecto {
                 System.err.println("Compilacion incorrecta");
                 System.err.println(lex.errlex);
             }
-                
+        */        
         }catch(Exception e){
             System.err.println(e.getMessage());
             
