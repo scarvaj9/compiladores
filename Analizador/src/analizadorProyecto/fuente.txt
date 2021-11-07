@@ -1,25 +1,4 @@
-hola
-
-
-esto es una 
-
-abci;
-Entero a
-Entero c,d;
-Real y,s
-
-// 
-54
-// no debe salir 
-3 + 5 *2 --2
-5<7
-3/1
-5 & 7 > 2.5
-
-
-
 Programa uno
-
 Entero a,b,c,i;
 Real   x,y,x;
 
@@ -28,25 +7,25 @@ Leer a,b,c;
 i=0;
 a=0;
 
-Mientras (i<10) Hacer
+Mientras (i<10) hacer
 	Si (a<b) Entonces
 		a=a+i;
-	Sino 
+	sino 
 		Si (x<y & a>b) Entonces
 			a=b+c;
-		Finsi
+		FinSi
 b=b+i;
 	FinSi
 	i=i+1;
-FinMientras
+finMientras
 
-Para i=0 Hasta a paso 2
+para i=0 hasta a paso 2
        c=c+i;
-       Para a=1 Hasta b 
+       para a=1 hasta b 
 	Escribir a;
-       FinPara
-FinPara
+       finpara
+finpara
 
-Escribir 'a ='
+Escribir 'a =',a, ' b = ', b;
 
 FinPrograma

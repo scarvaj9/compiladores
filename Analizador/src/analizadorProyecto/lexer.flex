@@ -1,4 +1,4 @@
-/*Definir el paquete*/
+
 package analizadorProyecto;
 import java.util.ArrayList;
 import java_cup.runtime.*;
@@ -27,16 +27,14 @@ a = [a-zA-Z]
 n = [0-9]
 s = "_"
 c = [-=%#]
-x = [\n\t\r]
+x = [\n\t\r ]
 
 // Expresiones
 
 num="-"?{n}+
 real ="-"?{n}+"."{n}+
 tipoEntero ="Entero "
-//variable = {a}*(","{a})?
 tipoReal ="Real " //{a}*(","{a})?
-variables = {a}*","{a}+
 id = {a}({a}|{n}|{s})*
 cad = "'"({a}|{n}|{s}|{c}|" ")* "'"
 com = ("#"|"//")({a}|{n}|{s}|" ")+
@@ -60,7 +58,7 @@ sino = "Sino"|"sino"|"SINO"
 finsi = "FinSi"|"finsi"|"FINSI"
 
 mientras ="Mientras"|"mientras"|"MIENTRAS"
-finmien = "FinMientras"|"finmientras"|"FINMIENTRAS"|"Finmientras"
+finmien = "FinMientras"|"finmientras"|"FINMIENTRAS"|"Finmientras"|"finMientras"
 
 para = "Para"|"para"|"PARA"
 hasta = "hasta"|"Hasta"|"HASTA"
@@ -94,8 +92,6 @@ finpara = "Finpara"|"finPara"|"FinPara"|"FINPARA"|"finpara"
 
 {tipoEntero} {ts.add(new Token("Variables tipo Entero ",yytext()));return symbol(sym.tipoEntero);}
 {tipoReal} {ts.add(new Token("Variables tipo Real",yytext()));return symbol(sym.tipoReal);}
-{variables} {ts.add(new Token("Variables prueba",yytext()));return symbol(sym.variables);}
-
 
 // token operaciones
 
@@ -111,9 +107,9 @@ finpara = "Finpara"|"finPara"|"FinPara"|"FINPARA"|"finpara"
 {coma} {ts.add(new Token("Coma ", yytext()));return symbol(sym.coma);}
 {num} {ts.add(new Token("Numero ", yytext()));return symbol(sym.num);}
 {real}  {ts.add(new Token("Real ",yytext()));return symbol(sym.real);}
-{id} {ts.add(new Token("Identificador ", yytext()));return symbol(sym.id);}
 {cad}  {ts.add(new Token("Cadena ",yytext()));return symbol(sym.cad);}
 {p_coma}  {ts.add(new Token("Punto y coma",yytext()));return symbol(sym.p_coma);}
 {com} {}
 {x}  {}
+{id} {ts.add(new Token("Identificador ", yytext()));return symbol(sym.id);}
 .  {errlex+=("\n Error Lexico, en linea : "+ (yyline+1)+" , "+(yycolumn+1)+ "caracter no valido "+yytext());}
